@@ -5,12 +5,16 @@
 {% block content %}
 <div class="container">
     <h1>{{ t.get('gallery-title','Galerie') }}</h1>
-    <p>{{ t.get('gallery-intro','Discover photos from our events and meetups. Use the link below to access our album.') }}</p>
+    <p>{{ t.get('gallery-intro','Discover photos from our events and meetups. Use the link below to access our album.')
+        }}</p>
 
     <div class="gallery-actions">
         <!-- If you have an external album (Google Photos, Flickr, Imgur, etc.), paste the URL here -->
         <p>
-            <a id="external-gallery-link" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer">{{ t.get('gallery-external-coming','Voir notre galerie (à venir)') }}</a>
+            <a id="external-gallery-link" class="btn btn-secondary"
+                href="https://drive.google.com/drive/folders/1HpOysx6sCgdlf-IMZlzPq-DpmdcT_HpW?usp=sharing"
+                target="_blank" rel="noopener noreferrer">{{
+                t.get('gallery-external-coming','Voir notre galerie') }}</a>
         </p>
     </div>
 
@@ -18,18 +22,18 @@
 
     <section>
         <h2>{{ t.get('gallery-recent','Vignettes récentes') }}</h2>
-        <p>Si vous souhaitez ajouter des photos directement sur le site, mettez les images dans `static/images/gallery` et elles apparaîtront ici automatiquement.</p>
         <div class="card-grid">
             {% set gallery_dir = 'static/images/gallery' %}
             {% for gallery in galleries %}
-                <div class="card">
-                    <div class="card-meta">{{ gallery.date }}</div>
-                    <h3>{{ gallery.title }}</h3>
-                    <p> <img src="{{ gallery.image }}" alt="" loading="lazy" decoding="async" style="width:100%;height:auto"></p>
-                    <div class="card-actions">
-                        <a href="{{ gallery.link }}" class="btn btn-secondary">{{ t.get('gallery-view','Voir') }}</a>
-                    </div>
+            <div class="card">
+                <div class="card-meta">{{ gallery.date }}</div>
+                <h3>{{ gallery.title }}</h3>
+                <p> <img src="{{ gallery.image }}" alt="" loading="lazy" decoding="async"
+                        style="width:100%;height:auto"></p>
+                <div class="card-actions">
+                    <a href="{{ gallery.link }}" class="btn btn-secondary">{{ t.get('gallery-view','Voir') }}</a>
                 </div>
+            </div>
             {% endfor %}
         </div>
     </section>
@@ -38,17 +42,17 @@
 
 {% block scripts %}
 <script>
-// Placeholder: if you want to set an external gallery link dynamically, you can set it in localStorage
-(function(){
-    const link = localStorage.getItem('externalGallery') || '#';
-    const a = document.getElementById('external-gallery-link');
-    if (link && link !== '#') {
-        a.href = link;
-        a.textContent = 'Voir notre galerie';
-    } else {
-        a.href = '#';
-        a.classList.add('disabled');
-    }
-})();
+    // Placeholder: if you want to set an external gallery link dynamically, you can set it in localStorage
+    (function () {
+        const link = localStorage.getItem('externalGallery') || '#';
+        const a = document.getElementById('external-gallery-link');
+        if (link && link !== '#') {
+            a.href = link;
+            a.textContent = 'Voir notre galerie';
+        } else {
+            a.href = '#';
+            a.classList.add('disabled');
+        }
+    })();
 </script>
 {% endblock %}

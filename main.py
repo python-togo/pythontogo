@@ -420,7 +420,7 @@ TRANSLATIONS = {
         "nav-communities": "Communautés",
         "lang-fr": "FR",
         "lang-en": "EN",
-        "donate": "Faire un don",
+        "donate": "Nous soutenir",
         "footer-about-title": "À propos",
         "footer-about-desc": (
             "Python Togo promeut le langage de programmation Python au Togo."
@@ -820,7 +820,7 @@ TRANSLATIONS = {
         "nav-communities": "Communities",
         "lang-fr": "FR",
         "lang-en": "EN",
-        "donate": "Donate",
+        "donate": "Support us",
         "footer-about-title": "About",
         "footer-about-desc": (
             "Python Togo promotes the Python programming language in Togo."
@@ -1687,7 +1687,8 @@ async def programs(request: Request):
 @app.get("/programs/30-days-of-python", response_class=HTMLResponse)
 async def program_30_days_of_python(request: Request):
     """Render the 30 Days of Python detail page."""
-    program = next(item for item in PROGRAMS if item["slug"] == "30-days-of-python")
+    program = next(
+        item for item in PROGRAMS if item["slug"] == "30-days-of-python")
     return templates.TemplateResponse(
         request=request,
         name="program_detail.html",
@@ -1723,7 +1724,8 @@ async def program_mentorship(request: Request):
 @app.get("/programs/engineering-bootcamp", response_class=HTMLResponse)
 async def program_engineering_bootcamp(request: Request):
     """Render the engineering bootcamp detail page."""
-    program = next(item for item in PROGRAMS if item["slug"] == "engineering-bootcamp")
+    program = next(
+        item for item in PROGRAMS if item["slug"] == "engineering-bootcamp")
     return templates.TemplateResponse(
         request=request,
         name="program_detail.html",
@@ -1770,6 +1772,11 @@ async def certificates(request: Request):
             },
         ),
     )
+
+
+@app.get("/pythoberfest")
+async def pythoberfest(request: Request):
+    return RedirectResponse(url="https://events.mlh.com/events/15369-hacktoberfest-hack-day-lome-x-python-togo", status_code=302)
 
 
 @app.get("/events")
